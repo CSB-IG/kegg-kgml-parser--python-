@@ -89,7 +89,7 @@ def KGML2Graph(xmlfile, filter_by = ()):
 
         nodes[node_id] = (name, node_title, node_type)
         pathway.labels[node_id] = node_title
-        pathway.add_node(node_id, data={'label': node_title, 'type': node_type, 'xy': (node_x, node_y)})
+        pathway.add_node(node_id, data={'label': node_title, 'type': node_type, 'xy': (node_x, node_y), 'name': name})
 #    logging.debug(nodes)
 
 
