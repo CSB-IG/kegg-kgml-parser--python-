@@ -97,9 +97,20 @@ def KGML2Graph(xmlfile, filter_by = ()):
     for rel in tree.getiterator('relation'):
         e1 = rel.get('entry1')
         e2 = rel.get('entry2')
-#        pathway.add_edge(nodes[e1][1], nodes[e2][1])
-        pathway.add_edge(e1, e2)
+
+        # save interaction type in edge data 
+        edge_data = {}
+        for n in rel.getchildren():
+            for t in n.items():
+                if t[0] == 'name':
+                    key = t[1]
+                elif t[0] == 'value':
+                    value = t[1]
+            edge_data[key] = value
+        pathway.add_edge(e1, e2, edge_data)
+        
         pathway.relations[e1+'_'+e2] = rel
+
    
 
     # Add reactions to pathway object
